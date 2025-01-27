@@ -1,2 +1,2 @@
-# group-project-aerial-robotics
-Group Projects In Aerial Robotics
+# Group Projects In Aerial Robotics
+*MSc Aerial Robotics (TB2)*
