@@ -1,0 +1,62 @@
+# Bytecode files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+.env/
+*.venv
+env/
+opencv_env/
+
+# Logs
+*.log
+logs/
+debug.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code settings
+.vscode/
+*.code-workspace
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Compiled C extensions
+*.so
+
+# Test & Coverage
+.tox/
+.nox/
+.coverage
+*.cover
+coverage.xml
+*.py,cover
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# PyInstaller
+*.spec
+
+# MyPy cache
+.mypy_cache/
+
+# PyCharm
+.idea/
+
+# Flask/Django
+instance/
+*.sqlite3
+db.sqlite3
+
+# Secrets (if applicable)
+*.env
+.envrc
