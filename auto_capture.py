@@ -26,12 +26,18 @@ class AutoCapture:
         self.camera = Picamera2()
         self.camera.start()
 
+        self.is_capture_enabled = False
+
         # Ensure the save directory exists
         os.makedirs(self.save_dir, exist_ok=True)
 
         # Retrieve the active mission record from the database
         self.mission = Mission.get(Mission.status == MissionStatus.ACTIVE)
         logging.info("AutoCapture initialized.")
+
+
+    def stop_capture(self):
+        self.is_capture_enabled = False
 
 
     def capture_loop(self, master: mavutil.mavtcp):
@@ -41,14 +47,18 @@ class AutoCapture:
         Args:
             master (mavutil.mavtcp): The MAVLink master connection used to receive messages.
         """
-        while True:
+        self.is_capture_enabled = True
+
+        while self.is_capture_enabled:
             # Receive a MAVLink message of type 'GLOBAL_POSITION_INT'
             msg = master.recv_match(type='GLOBAL_POSITION_INT', blocking=True)
             if msg:
                 # Convert latitude and longitude from 1e7 degrees to standard degrees
                 lat = msg.lat / 1e7
                 lon = msg.lon / 1e7
-                print("Latitude:", lat, "Longitude:", lon)
+
+                # Convert heading from centidegrees to degrees
+                yaw = msg.hdg / 100.0 if msg.hdg != 65535 else None  # 65535 means undefined
             
             # Capture an image array from the camera
             frame = self.camera.capture_array()
@@ -68,6 +78,7 @@ class AutoCapture:
                 path=filename,
                 id=current_image_id,
                 mission=self.mission,
+                yaw=yaw,
                 lat=lat,
                 lon=lon
             )

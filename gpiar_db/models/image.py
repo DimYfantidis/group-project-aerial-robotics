@@ -8,6 +8,7 @@ class Image(BaseModel):
     path = CharField()
     lat = FloatField(null=True)
     lon = FloatField(null=True)
+    yaw = FloatField(null=True)
     zebra_locations = PointListField(default=[])
     is_zebra = BooleanField(default=False)
     is_rhino = BooleanField(default=False)
