@@ -1,5 +1,5 @@
 # Bytecode files
-__pycache__/
+*__pycache__/
 *.py[cod]
 *$py.class
 
@@ -60,3 +60,5 @@ db.sqlite3
 # Secrets (if applicable)
 *.env
 .envrc
+/capture-images/
+*.db
