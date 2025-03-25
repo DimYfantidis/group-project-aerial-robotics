@@ -1,3 +1,6 @@
+opengl-simulator/dependencies
+opengl-simulator/build
+
 # Bytecode files
 *__pycache__/
 *.py[cod]
