@@ -64,4 +64,3 @@ db.sqlite3
 *.env
 .envrc
 /capture-images/
-*.db
